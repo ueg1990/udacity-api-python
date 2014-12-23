@@ -42,7 +42,10 @@ class Catalog():
         try:
             data = self.__get()
             if 'courses' in data:
-                return [x for x in data['courses'] if x['key'] == key][0]
+                courses_generator = (course for course in data['courses'])
+                for course in courses_generator:
+                    if course['key'] == key:
+                        return course
         except:
             return None
 
