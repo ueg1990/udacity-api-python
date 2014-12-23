@@ -16,9 +16,9 @@ class Catalog():
         else:
             req = requests.get(self.options['url'])
 
-            if req.status_code is 404:
+            if req.status_code == 404:
                 raise Exception('404 page not found')
-            elif req.status_code is 500:
+            elif req.status_code == 500:
                 raise Exception('500 server error')
             else:
                 # put in cache
@@ -53,19 +53,20 @@ class Catalog():
         except:
             return None
 
-cat = Catalog()
-x = cat.catalog()
-print(x['tracks'])
+if __name__ == '__main__':
+    cat = Catalog()
+    x = cat.catalog()
+    print(x['tracks'])
 
 
-c = cat.courses()
-print(c[0]['key'])
+    c = cat.courses()
+    print(c[0]['key'])
 
-d = cat.course('cs191')
-print(d)
+    d = cat.course('cs191')
+    print(d)
 
-d = cat.course('cs101')
-print(d)
+    d = cat.course('cs101')
+    print(d)
 
-e = cat.instructors('cs11')
-print(e)
+    e = cat.instructors('cs11')
+    print(e)
